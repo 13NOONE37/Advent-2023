@@ -3,10 +3,17 @@ file = open('input.txt','r')
 blocks = file.read().split('\n\n')
 
 seeds_line = ''.join(blocks[0].split(':')[1]).strip().split(' ')
-seeds = []
-for seed in seeds_line:
-    seeds.append(int(seed))
 
+seeds = set()
+
+print(len(seeds_line),seeds_line)
+for i in range(0,len(seeds_line),2):
+    seed_value = int(seeds_line[i])
+    seed_range = int(seeds_line[i+1])
+    for j in range(seed_value, seed_value+seed_range):
+        seeds.add(j)
+
+print(len(seeds))
 lowest_location = -1
 for seed in seeds:
     for line in blocks[1:]:
